@@ -1,0 +1,46 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Carregar os dados do arquivo CSV
+data = pd.read_csv('dados_meteorologicos.csv')
+
+# Visualizar as primeiras linhas do DataFrame
+print(data.head())
+
+# Calcular a média e o desvio padrão da temperatura e umidade
+media_temperatura = data['temperatura'].mean()
+desvio_padrao_temperatura = data['temperatura'].std()
+
+media_umidade = data['umidade'].mean()
+desvio_padrao_umidade = data['umidade'].std()
+
+print(f'Média de Temperatura: {media_temperatura:.2f}°C')
+print(f'Desvio Padrão de Temperatura: {desvio_padrao_temperatura:.2f}°C')
+print(f'Média de Umidade: {media_umidade:.2f}%')
+print(f'Desvio Padrão de Umidade: {desvio_padrao_umidade:.2f}%')
+
+# Criar gráfico de variação de temperatura ao longo do tempo
+plt.figure(figsize=(10, 6))
+plt.plot(data['data'], data['temperatura'], marker='o')
+plt.title('Variação de Temperatura ao Longo do Tempo')
+plt.xlabel('Data')
+plt.ylabel('Temperatura (°C)')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+import pandas as pd
+
+# Carregar os dados do arquivo CSV
+data = pd.read_csv('dados_meteorologicos.csv')
+
+# Calcular a média de umidade
+media_umidade = data['umidade'].mean()
+
+# Definir um limiar de umidade para indicar possível chuva
+limiar_umidade_chuva = 70  # Valor pode ser ajustado conforme necessário
+
+# Verificar se a média de umidade está acima do limiar
+if media_umidade > limiar_umidade_chuva:
+    print("Há uma tendência de chuva com base na média de umidade.")
+else:
+    print("Não há indícios de chuva com base na média de umidade.")
